@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{883DBDE0-8A7B-4C0B-AB98-560C548FEC0D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fhey.Framework.Uility</RootNamespace>
+    <AssemblyName>Fhey.Framework.Uility</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Commons, Version=0.4.2.8580, Culture=neutral, PublicKeyToken=44382d1b57473eda">
+      <HintPath>..\packages\Memcached.ClientLibrary.1.0\lib\net20\Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="Enyim.Caching, Version=2.16.0.0, Culture=neutral, PublicKeyToken=cec98615db04012e, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnyimMemcached.2.16.0\lib\net35\Enyim.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+      <HintPath>..\packages\Memcached.ClientLibrary.1.0\lib\net20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <HintPath>..\packages\Memcached.ClientLibrary.1.0\lib\net20\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Memcached.ClientLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=42c0400964dcc297, processorArchitecture=MSIL">
+      <HintPath>..\packages\Memcached.ClientLibrary.1.0\lib\net20\Memcached.ClientLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.JScript" />
+    <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.5.0.2\lib\net45\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Client.5.0.2\lib\net45\ServiceStack.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Common.5.0.2\lib\net45\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Interfaces.5.0.2\lib\net45\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.5.0.2\lib\net45\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cache\CacheBase.cs" />
+    <Compile Include="Cache\HttpCache.cs" />
+    <Compile Include="Cache\Interface\ICacheBase.cs" />
+    <Compile Include="Cache\MemeryCache.cs" />
+    <Compile Include="Conversion\Alphabet.cs" />
+    <Compile Include="Conversion\Collections.cs" />
+    <Compile Include="Conversion\ConvertDataSize.cs" />
+    <Compile Include="Encrypt\AES.cs" />
+    <Compile Include="Encrypt\DES.cs" />
+    <Compile Include="Encrypt\EncryptBase.cs" />
+    <Compile Include="Encrypt\Interface\IEncryptBase.cs" />
+    <Compile Include="Encrypt\MD5.cs" />
+    <Compile Include="Encrypt\RC2.cs" />
+    <Compile Include="EnumHelper.cs" />
+    <Compile Include="Expression\CSharpStringExpressionEvaluator.cs" />
+    <Compile Include="Expression\Interface\IExpressionEvaluator.cs" />
+    <Compile Include="Expression\Interface\IStringExpressionEvaluator.cs" />
+    <Compile Include="Expression\JScriptCodeProviderStringExpressionEvaluator.cs" />
+    <Compile Include="Expression\JScriptVsaEngineStringExpressionEvaluator.cs" />
+    <Compile Include="Extension\DateTimeExtension.cs" />
+    <Compile Include="Extension\ObjectExtension.cs" />
+    <Compile Include="Extension\ReflectionExtenstion.cs" />
+    <Compile Include="Extension\StringExtension.cs" />
+    <Compile Include="FileOperation\CsvOperation.cs" />
+    <Compile Include="FileOperation\DirectoryOperation.cs" />
+    <Compile Include="FileOperation\FileOperation.cs" />
+    <Compile Include="FileOperation\NpoiOperation.cs" />
+    <Compile Include="FileOperation\OleDbOperation.cs" />
+    <Compile Include="FileOperation\XmlOperation.cs" />
+    <Compile Include="Http\HttpHelper.cs" />
+    <Compile Include="Http\HttpRequesterBase.cs" />
+    <Compile Include="Http\Interface\IHttpRequester.cs" />
+    <Compile Include="Http\Interface\IHttpRequestJsonObjectResultValidator.cs" />
+    <Compile Include="MemcacheHelper.cs" />
+    <Compile Include="ModelHelper.cs" />
+    <Compile Include="Pooling\IPool.cs" />
+    <Compile Include="Pooling\IPoolConfiguration.cs" />
+    <Compile Include="Pooling\IPoolObjectFactory.cs" />
+    <Compile Include="Pooling\IPoolRepository.cs" />
+    <Compile Include="Pooling\Pool.cs" />
+    <Compile Include="Pooling\PoolConfiguration.cs" />
+    <Compile Include="Pooling\PoolFactory.cs" />
+    <Compile Include="Pooling\PoolObjectFactory.cs" />
+    <Compile Include="Pooling\PoolRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\ActivatorReflector.cs" />
+    <Compile Include="Reflection\Interface\IObjectReflector.cs" />
+    <Compile Include="Reflection\Interface\IObjectStuffer.cs" />
+    <Compile Include="Reflection\SystemObjectReflector.cs" />
+    <Compile Include="Reflection\SystemObjectStuffer.cs" />
+    <Compile Include="Serialization\BinarySerializer.cs" />
+    <Compile Include="Serialization\ByteArraySerializer.cs" />
+    <Compile Include="Serialization\Interface\IByteArraySerializer.cs" />
+    <Compile Include="Serialization\Interface\IJsonSerializer.cs" />
+    <Compile Include="Serialization\Interface\ISerializer.cs" />
+    <Compile Include="Serialization\Interface\IStringSerializer.cs" />
+    <Compile Include="Serialization\Interface\IXmlSerializer.cs" />
+    <Compile Include="Serialization\JsonSerializer.cs" />
+    <Compile Include="Serialization\XmlSerializer.cs" />
+    <Compile Include="StringHelper.cs" />
+    <Compile Include="TimeHelper.cs" />
+    <Compile Include="WhereHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
