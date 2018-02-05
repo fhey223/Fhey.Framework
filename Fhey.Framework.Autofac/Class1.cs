@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fhey.Framework.Validate
+namespace Fhey.Framework.Autofac
 {
-    //
     public class Class1
     {
     }
