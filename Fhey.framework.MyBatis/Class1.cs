@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fhey.Framework.Redis
+namespace Fhey.framework.MyBatis
 {
     public class Class1
     {
