@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace Fhey.framework
 {
     public class Class1
-    {
+    {  
     }
 }
