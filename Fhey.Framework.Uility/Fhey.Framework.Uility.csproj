@@ -110,6 +110,7 @@
     <Compile Include="Extension\ObjectExtension.cs" />
     <Compile Include="Extension\ReflectionExtenstion.cs" />
     <Compile Include="Extension\StringExtension.cs" />
+    <Compile Include="FileOperation\ConfigOperation.cs" />
     <Compile Include="FileOperation\CsvOperation.cs" />
     <Compile Include="FileOperation\DirectoryOperation.cs" />
     <Compile Include="FileOperation\FileOperation.cs" />
