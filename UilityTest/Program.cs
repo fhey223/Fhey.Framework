@@ -3,9 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace UilityTest
 {
@@ -13,24 +17,11 @@ namespace UilityTest
     {
         static void Main(string[] args)
         {
-            //获取Configuration对象
-            var config = new Fhey.Framework.Uility.FileOperation.ConfigOperation();
-            //根据Key读取<add>元素的Value
-            string name = config.Get("name");
-            //写入<add>元素的Value
-            config.Set("name", "fx163");
-            //增加<add>元素
-            config.Add("url", "http://www.fx163.net");
-            //删除<add>元素
-            config.Remove("name");
-            //刷新，否则程序读取的还是之前的值（可能已装入内存）
-            System.Configuration.ConfigurationManager.RefreshSection("appSettings");
+            var str = "戏剧";
+            var a1 = Fhey.Framework.Uility.PinYinZipUility.GetFirstPinyin(str);
+            var a2 = Fhey.Framework.Uility.PinYinZipUility.GetPinyin(str);
         }
 
-        
     }
-    public class ConfigOperation
-    {
-        
-    }
+
 }

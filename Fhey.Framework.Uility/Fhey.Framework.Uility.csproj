@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ChnCharInfo">
+      <HintPath>..\packages\Microsoft Visual Studio International Pack 1.0 SR1\ChnCharInfo.dll</HintPath>
+    </Reference>
     <Reference Include="Commons, Version=0.4.2.8580, Culture=neutral, PublicKeyToken=44382d1b57473eda">
       <HintPath>..\packages\Memcached.ClientLibrary.1.0\lib\net20\Commons.dll</HintPath>
     </Reference>
@@ -123,6 +126,7 @@
     <Compile Include="Http\Interface\IHttpRequestJsonObjectResultValidator.cs" />
     <Compile Include="MemcacheHelper.cs" />
     <Compile Include="ModelHelper.cs" />
+    <Compile Include="Other\PinYinZipUility.cs" />
     <Compile Include="Pooling\IPool.cs" />
     <Compile Include="Pooling\IPoolConfiguration.cs" />
     <Compile Include="Pooling\IPoolObjectFactory.cs" />
@@ -150,6 +154,7 @@
     <Compile Include="StringHelper.cs" />
     <Compile Include="TimeHelper.cs" />
     <Compile Include="WhereHelper.cs" />
+    <Compile Include="Other\ZipUility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
