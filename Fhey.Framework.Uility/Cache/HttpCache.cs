@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Web;
 
-namespace Fhey.framework.Uility.Cache
+namespace Fhey.Framework.Uility.Cache
 {
 
     public class HttpCache: CacheBase

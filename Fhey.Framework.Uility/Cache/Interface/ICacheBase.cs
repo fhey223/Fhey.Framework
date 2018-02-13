@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fhey.framework.Uility.Cache.Interface
+namespace Fhey.Framework.Uility.Cache.Interface
 {
     public interface ICacheBase
     {

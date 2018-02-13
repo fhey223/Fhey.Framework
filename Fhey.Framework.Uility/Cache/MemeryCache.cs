@@ -1,5 +1,4 @@
-﻿using Fhey.framework.Uility.Cache;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Fhey.Framework.Uility.Cache

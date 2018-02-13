@@ -20,7 +20,7 @@ namespace Fhey.Framework.Redis
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public bool Exists(string key)
+        public override bool Exists(string key)
         {
             return _conn.KeyExists(key);
         }
@@ -30,7 +30,7 @@ namespace Fhey.Framework.Redis
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public bool Remove(string key)
+        public override bool Remove(string key)
         {
             return _conn.KeyDelete(key);
         }

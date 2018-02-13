@@ -55,7 +55,6 @@
     <Compile Include="RedisConfiguration.cs" />
     <Compile Include="RedisHashRepository.cs" />
     <Compile Include="RedisListRepository.cs" />
-    <Compile Include="RedisRepository.cs" />
     <Compile Include="RedisProvider.cs" />
     <Compile Include="RedisRepositoryBase.cs" />
     <Compile Include="RedisSortedSetRepository.cs" />

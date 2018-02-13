@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Fhey.framework.Uility.Cache.Interface
+namespace Fhey.Framework.Uility.Cache.Interface
 {
     public interface IEncryptBase
     {

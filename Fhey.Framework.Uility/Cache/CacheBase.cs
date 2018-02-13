@@ -1,7 +1,7 @@
-﻿using Fhey.framework.Uility.Cache.Interface;
+﻿using Fhey.Framework.Uility.Cache.Interface;
 using System;
 
-namespace Fhey.framework.Uility.Cache
+namespace Fhey.Framework.Uility.Cache
 {
     public abstract class CacheBase : ICacheBase
     {
