@@ -1,4 +1,4 @@
-﻿namespace Fhey.Framework.Uility.Expression.Interface
+﻿namespace Fhey.Framework.Uility.Expressions.Interface
 {
     public interface IExpressionEvaluator<TExpression>
     {

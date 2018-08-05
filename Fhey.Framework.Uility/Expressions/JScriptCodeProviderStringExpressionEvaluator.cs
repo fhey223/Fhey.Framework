@@ -4,7 +4,7 @@ using System.Reflection;
 using Fhey.Framework.Uility.Expression.Interface;
 using Microsoft.JScript;
 
-namespace Fhey.Framework.Uility.Expression
+namespace Fhey.Framework.Uility.Expressions
 {
     public class JScriptCodeProviderStringExpressionEvaluator : IStringExpressionEvaluator
     {

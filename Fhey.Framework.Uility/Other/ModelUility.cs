@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Common
+namespace Fhey.Framework.Uility
 {
-    public class ModelHelper
+    public class ModelUility
     {  
          public object ShallowCopy()
         {

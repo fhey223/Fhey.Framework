@@ -5,7 +5,7 @@ using System.Text;
 using Fhey.Framework.Uility.Expression.Interface;
 using Microsoft.CSharp;
 
-namespace Fhey.Framework.Uility.Expression
+namespace Fhey.Framework.Uility.Expressions
 {
     public class CSharpStringExpressionEvaluator 
     {

@@ -103,12 +103,12 @@
     <Compile Include="Encrypt\Interface\IEncryptBase.cs" />
     <Compile Include="Encrypt\MD5.cs" />
     <Compile Include="Encrypt\RC2.cs" />
-    <Compile Include="EnumHelper.cs" />
-    <Compile Include="Expression\CSharpStringExpressionEvaluator.cs" />
-    <Compile Include="Expression\Interface\IExpressionEvaluator.cs" />
-    <Compile Include="Expression\Interface\IStringExpressionEvaluator.cs" />
-    <Compile Include="Expression\JScriptCodeProviderStringExpressionEvaluator.cs" />
-    <Compile Include="Expression\JScriptVsaEngineStringExpressionEvaluator.cs" />
+    <Compile Include="Other\EnumUility.cs" />
+    <Compile Include="Expressions\CSharpStringExpressionEvaluator.cs" />
+    <Compile Include="Expressions\Interface\IExpressionEvaluator.cs" />
+    <Compile Include="Expressions\Interface\IStringExpressionEvaluator.cs" />
+    <Compile Include="Expressions\JScriptCodeProviderStringExpressionEvaluator.cs" />
+    <Compile Include="Expressions\JScriptVsaEngineStringExpressionEvaluator.cs" />
     <Compile Include="Extension\DateTimeExtension.cs" />
     <Compile Include="Extension\ObjectExtension.cs" />
     <Compile Include="Extension\ReflectionExtenstion.cs" />
@@ -124,8 +124,8 @@
     <Compile Include="Http\HttpRequesterBase.cs" />
     <Compile Include="Http\Interface\IHttpRequester.cs" />
     <Compile Include="Http\Interface\IHttpRequestJsonObjectResultValidator.cs" />
-    <Compile Include="MemcacheHelper.cs" />
-    <Compile Include="ModelHelper.cs" />
+    <Compile Include="Other\MemcacheHelper.cs" />
+    <Compile Include="Other\ModelUility.cs" />
     <Compile Include="Other\PinYinZipUility.cs" />
     <Compile Include="Pooling\IPool.cs" />
     <Compile Include="Pooling\IPoolConfiguration.cs" />
@@ -152,8 +152,8 @@
     <Compile Include="Serialization\JsonSerializer.cs" />
     <Compile Include="Serialization\XmlSerializer.cs" />
     <Compile Include="StringHelper.cs" />
-    <Compile Include="TimeHelper.cs" />
-    <Compile Include="WhereHelper.cs" />
+    <Compile Include="Other\TimeUility.cs" />
+    <Compile Include="Other\ExpressionUility.cs" />
     <Compile Include="Other\ZipUility.cs" />
   </ItemGroup>
   <ItemGroup>

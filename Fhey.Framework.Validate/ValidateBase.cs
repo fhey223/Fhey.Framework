@@ -11,7 +11,6 @@ namespace Fhey.Framework.Validate
 
         public bool CommonValidate(string value,string regx)
         {
-            var a = Regex.Match(value, regx);
             return Regex.IsMatch (value, regx);
         }
     }

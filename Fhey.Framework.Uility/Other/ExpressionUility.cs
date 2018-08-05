@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace Common
+namespace Fhey.Framework.Uility
 {
-    public class WhereHelper<T> 
+    public class ExpressionUility<T> 
         where T : class
     {
         private ParameterExpression param;
         private BinaryExpression filter;
 
-        public WhereHelper()
+        public ExpressionUility()
         {
             param = Expression.Parameter(typeof(T), "c");
             //1==1

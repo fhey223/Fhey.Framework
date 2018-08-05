@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace Common
+namespace Fhey.Framework.Uility
 {
-    public class TimeHelper 
-    {
+    public class TimeUility
+    { 
         /// <summary>
         ///     将选中的分钟或者小时转换秒
         /// </summary>

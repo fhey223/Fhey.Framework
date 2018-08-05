@@ -1,7 +1,7 @@
 ﻿using Fhey.Framework.Uility.Expression.Interface;
 using Microsoft.JScript.Vsa;
 
-namespace Com.Fhey.Framework.Uility.Expression
+namespace Com.Fhey.Framework.Uility.Expressions
 {
     public class JScriptVsaEngineStringExpressionEvaluator : IStringExpressionEvaluator
     {

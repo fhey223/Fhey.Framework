@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
-namespace Common
+namespace Fhey.Framework.Uility
 {
-    public class EnumHelper 
+    public class EnumUility
     {
         public string GetDescription(Enum obj)
         {
