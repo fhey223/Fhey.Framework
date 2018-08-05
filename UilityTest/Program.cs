@@ -18,8 +18,8 @@ namespace UilityTest
         static void Main(string[] args)
         {
             var str = "戏剧";
-            var a1 = Fhey.Framework.Uility.PinYinZipUility.GetFirstPinyin(str);
-            var a2 = Fhey.Framework.Uility.PinYinZipUility.GetPinyin(str);
+            //var a1 = Fhey.Framework.Uility.PinYinZipUility.GetFirstPinyin(str);
+            //var a2 = Fhey.Framework.Uility.PinYinZipUility.GetPinyin(str);
         }
 
     }
