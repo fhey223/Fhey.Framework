@@ -1,7 +1,7 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Reflection;
-using Fhey.Framework.Uility.Expression.Interface;
+using Fhey.Framework.Uility.Expressions.Interface;
 using Microsoft.JScript;
 
 namespace Fhey.Framework.Uility.Expressions

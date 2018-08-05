@@ -2,7 +2,7 @@
 using System.CodeDom.Compiler;
 using System.Reflection;
 using System.Text;
-using Fhey.Framework.Uility.Expression.Interface;
+using Fhey.Framework.Uility.Expressions.Interface;
 using Microsoft.CSharp;
 
 namespace Fhey.Framework.Uility.Expressions

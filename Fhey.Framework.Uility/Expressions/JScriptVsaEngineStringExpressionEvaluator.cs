@@ -1,4 +1,4 @@
-﻿using Fhey.Framework.Uility.Expression.Interface;
+﻿using Fhey.Framework.Uility.Expressions.Interface;
 using Microsoft.JScript.Vsa;
 
 namespace Com.Fhey.Framework.Uility.Expressions
