@@ -11,7 +11,7 @@ namespace ValidateTest
         static void Main(string[] args)
         {
             var Validator = new Fhey.Framework.Validate.NumberValidate ();
-            var a = Validator.IsNumber("ff");
+            var a = Validator.IsNumber("ff"); 
         }
     }
 }
