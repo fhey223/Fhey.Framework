@@ -1,6 +1,5 @@
 ﻿using Fhey.Business.Enum;
 using Fhey.Framework.Uility;
-using System.ComponentModel;
 
 namespace Fhey.Business.Model
 {
@@ -17,7 +16,7 @@ namespace Fhey.Business.Model
         public static ResponseBase Create(ResultTypeEnum code, string message = "")
         {
             var obj = new ResponseBase();
-            var description = new EnumHelper().GetDescription(code);
+            var description = new EnumUility().GetDescription(code);
             obj.Message = string.IsNullOrEmpty(message)
                 ? description : $"{description},错误原因：{message}";
             obj.Code = code;
@@ -31,7 +30,7 @@ namespace Fhey.Business.Model
 
         public ResponseBase(ResultTypeEnum resultType, string message = "")
         {
-            var description = new EnumHelper().GetDescription(resultType);
+            var description = new EnumUility().GetDescription(resultType);
             if (string.IsNullOrEmpty(message))
             {
                 Message = description;
