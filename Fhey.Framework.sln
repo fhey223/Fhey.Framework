@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fhey.Framework", "Fhey.Framework\Fhey.Framework.csproj", "{1AE4CB17-10F5-4EFC-BAF0-FC66B31A2EBD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fhey.Framework.Uility", "Fhey.Framework.Uility\Fhey.Framework.Uility.csproj", "{883DBDE0-8A7B-4C0B-AB98-560C548FEC0D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fhey.Framework.Validate", "Fhey.Framework.Validate\Fhey.Framework.Validate.csproj", "{05110507-FA3D-4D73-9C58-F21EE842CACD}"
@@ -27,18 +25,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidateTest", "ValidateTes
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{1181EC94-C59F-498C-BEAA-95EFF2F4C352}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fhey.Framework.MyBatis", "Fhey.Framework.MyBatis\Fhey.Framework.MyBatis.csproj", "{44A5AF45-540A-4449-A700-588185C31C04}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1AE4CB17-10F5-4EFC-BAF0-FC66B31A2EBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1AE4CB17-10F5-4EFC-BAF0-FC66B31A2EBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1AE4CB17-10F5-4EFC-BAF0-FC66B31A2EBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1AE4CB17-10F5-4EFC-BAF0-FC66B31A2EBD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{883DBDE0-8A7B-4C0B-AB98-560C548FEC0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{883DBDE0-8A7B-4C0B-AB98-560C548FEC0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{883DBDE0-8A7B-4C0B-AB98-560C548FEC0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,16 +67,11 @@ Global
 		{2F4EA904-2D7E-4153-89EB-F38D93EC1109}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F4EA904-2D7E-4153-89EB-F38D93EC1109}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F4EA904-2D7E-4153-89EB-F38D93EC1109}.Release|Any CPU.Build.0 = Release|Any CPU
-		{44A5AF45-540A-4449-A700-588185C31C04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44A5AF45-540A-4449-A700-588185C31C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44A5AF45-540A-4449-A700-588185C31C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44A5AF45-540A-4449-A700-588185C31C04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{1AE4CB17-10F5-4EFC-BAF0-FC66B31A2EBD} = {1181EC94-C59F-498C-BEAA-95EFF2F4C352}
 		{883DBDE0-8A7B-4C0B-AB98-560C548FEC0D} = {1181EC94-C59F-498C-BEAA-95EFF2F4C352}
 		{05110507-FA3D-4D73-9C58-F21EE842CACD} = {1181EC94-C59F-498C-BEAA-95EFF2F4C352}
 		{608549B6-44A1-44B4-8619-7362B54E4F52} = {1181EC94-C59F-498C-BEAA-95EFF2F4C352}
@@ -94,9 +81,8 @@ Global
 		{2FD56A23-ADC8-4700-8D94-3075C2BFBB0D} = {1181EC94-C59F-498C-BEAA-95EFF2F4C352}
 		{44E868A1-E0E1-465D-9C6C-AB8D4F322A47} = {C7FA139E-D5EE-4ADF-8EC6-D02D12CBE228}
 		{2F4EA904-2D7E-4153-89EB-F38D93EC1109} = {C7FA139E-D5EE-4ADF-8EC6-D02D12CBE228}
-		{44A5AF45-540A-4449-A700-588185C31C04} = {1181EC94-C59F-498C-BEAA-95EFF2F4C352}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {88E7EC12-D82B-4A2C-9DA6-CEA77C1341E7}
 	EndGlobalSection
-EndGlobal 
+EndGlobal
