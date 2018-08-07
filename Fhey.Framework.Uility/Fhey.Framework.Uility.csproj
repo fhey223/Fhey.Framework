@@ -118,7 +118,7 @@
     <Compile Include="FileOperation\OleDbOperation.cs" />
     <Compile Include="FileOperation\XmlOperation.cs" />
     <Compile Include="Http\HttpHelper.cs" />
-    <Compile Include="Http\HttpRequesterBase.cs" />
+    <Compile Include="Http\HttpRequester.cs" />
     <Compile Include="Http\Interface\IHttpRequester.cs" />
     <Compile Include="Http\Interface\IHttpRequestJsonObjectResultValidator.cs" />
     <Compile Include="Other\MemcacheHelper.cs" />
@@ -156,6 +156,12 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fhey.Framework\Fhey.Framework.csproj">
+      <Project>{04e11c2b-99bd-49a6-b0db-660f5a721e93}</Project>
+      <Name>Fhey.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

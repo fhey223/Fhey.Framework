@@ -8,18 +8,19 @@ using System.Text;
 using Fhey.Framework.Uility.Network.Http.Interface;
 using Fhey.Framework.Uility.Serialization.Interface;
 using Fhey.Framework.Uility.Serialization;
+using System.Reflection;
+using Fhey.framework.Enum;
 
 namespace Fhey.Framework.Uility.Network.Http
 {
-    public abstract class HttpRequesterBase : IHttpRequester
+    public abstract class HttpRequester : IHttpRequester
     {
 
         public IJsonSerializer JsonSerializer = new JsonSerializer();
         public virtual IHttpRequestJsonObjectResultValidator HttpRequestJsonObjectResultValidator { get; set; }
 
-        public virtual HttpWebResponse CreateGetHttpResponse(string url, int? timeout, string userAgent, string contentType, Encoding requestEncoding, CookieCollection cookies)
+        public virtual HttpWebResponse CreateHttpResponse(string url, HttpRequestType httpRequestType, object parameters, int? timeout, string userAgent, string contentType, Encoding requestEncoding, CookieCollection cookies)
         {
-            
             if (string.IsNullOrEmpty(url))
             {
                 throw new ArgumentNullException("url");
@@ -28,13 +29,14 @@ namespace Fhey.Framework.Uility.Network.Http
             {
                 throw new ArgumentNullException("contentType");
             }
-
+            if (httpRequestType == HttpRequestType.GET)
+            {
+                url += BuildGetParamters(parameters);
+            }
             HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            request.Method = "GET";
-            request.UserAgent = userAgent;
-            request.ContentType = contentType;
+            request.Method = httpRequestType.ToString();
             request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-
+            request.ContentType = contentType;
             if (!string.IsNullOrEmpty(userAgent))
             {
                 request.UserAgent = userAgent;
@@ -48,98 +50,48 @@ namespace Fhey.Framework.Uility.Network.Http
                 request.CookieContainer = new CookieContainer();
                 request.CookieContainer.Add(cookies);
             }
-            StringBuilder sbOutput = new StringBuilder();
-            sbOutput.AppendLine("");
-            for(int index=0;index<url.Length+4-1;index++)
-            sbOutput.Append("*");
-            sbOutput.AppendLine("*");
-            sbOutput.AppendLine("url:" + url);
-            sbOutput.AppendLine("Method:" + request.Method);
-            sbOutput.AppendLine("UserAgent:" + request.UserAgent);
-            sbOutput.AppendLine("ContentType:" + request.ContentType);
-            sbOutput.AppendLine("Accept:" + request.Accept);
-            for (int index = 0; index < url.Length + 4 - 1; index++)
-                sbOutput.Append("*");
-            sbOutput.AppendLine("*");
-            return request.GetResponse() as HttpWebResponse;
-        }
+            switch (httpRequestType)
+            {
+                case HttpRequestType.GET:
 
-       
-        public virtual HttpWebResponse CreatePostHttpResponse(string url, string postData, int? timeout, string userAgent, string contentType, Encoding requestEncoding, CookieCollection cookies)
-        {
-            if (string.IsNullOrEmpty(url))
-            {
-                throw new ArgumentNullException("url");
-            }
-            if (string.IsNullOrEmpty(contentType))
-            {
-                throw new ArgumentNullException("contentType");
+                    break;
+                case HttpRequestType.POST:
+
+                    break;
             }
 
-            HttpWebRequest request = null;
-            
-            if (url.StartsWith("https", StringComparison.OrdinalIgnoreCase))
+            if (httpRequestType == HttpRequestType.POST && parameters != null)
             {
-                ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
-                request = WebRequest.Create(url) as HttpWebRequest;
-                request.ProtocolVersion = HttpVersion.Version10;
-            }
-            else
-            {
-                request = WebRequest.Create(url) as HttpWebRequest;
-            }
-            request.Method = "POST";
-            request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-            request.ContentType = contentType;
+                var str = JsonSerializer.Serialize(parameters);
 
-            if (!string.IsNullOrEmpty(userAgent))
-            {
-                request.UserAgent = userAgent;
-            }
-
-            if (timeout.HasValue)
-            {
-                request.Timeout = timeout.Value;
-            }
-            if (cookies != null)
-            {
-                request.CookieContainer = new CookieContainer();
-                request.CookieContainer.Add(cookies);
-            }
-            
-            if (!string.IsNullOrEmpty(postData))
-            {
-                byte[] data = requestEncoding.GetBytes(postData);
+                byte[] data = requestEncoding.GetBytes(str);
                 using (Stream stream = request.GetRequestStream())
                 {
                     stream.Write(data, 0, data.Length);
                 }
             }
-
-            StringBuilder sbOutput = new StringBuilder();
-            sbOutput.AppendLine("");
-            for (int index = 0; index < url.Length + 4 - 1; index++)
-                sbOutput.Append("*");
-            sbOutput.AppendLine("*");
-            sbOutput.AppendLine("url:" + url);
-            sbOutput.AppendLine("Method:" + request.Method);
-            sbOutput.AppendLine("UserAgent:" + request.UserAgent);
-            sbOutput.AppendLine("ContentType:" + request.ContentType);
-            sbOutput.AppendLine("Accept:" + request.Accept);
-            for (int index = 0; index < url.Length + 4 - 1; index++)
-                sbOutput.Append("*");
-            sbOutput.AppendLine("*");
             return request.GetResponse() as HttpWebResponse;
         }
 
-       
+        public virtual HttpWebResponse CreateGetHttpResponse(string url, object parameters, int? timeout, string userAgent, string contentType, Encoding requestEncoding, CookieCollection cookies)
+        {
+            return CreateHttpResponse(url, HttpRequestType.GET, parameters, timeout, userAgent, contentType, requestEncoding, cookies);
+        }
+
+
+        public virtual HttpWebResponse CreatePostHttpResponse(string url, object parameters, int? timeout, string userAgent, string contentType, Encoding requestEncoding, CookieCollection cookies)
+        {
+            return CreateHttpResponse(url, HttpRequestType.POST, parameters, timeout, userAgent, contentType, requestEncoding, cookies);
+        }
+
+
         public virtual HttpWebResponse CreatePostFileHttpResponse(string url, IDictionary<string, string> parameters, Stream fileStream, string fileFormFieldName, string fileContentType, string filePath, string referer, Encoding requestEncoding, CookieCollection cookies)
         {
             string boundary = "----------" + DateTime.Now.Ticks.ToString("x");
 
-            
+
             HttpWebRequest request = null;
-            
+
             if (url.StartsWith("https", StringComparison.OrdinalIgnoreCase))
             {
                 ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
@@ -159,7 +111,7 @@ namespace Fhey.Framework.Uility.Network.Http
                 request.CookieContainer = new CookieContainer();
                 request.CookieContainer.Add(cookies);
             }
-            
+
             StringBuilder sb = new StringBuilder();
             if (parameters != null)
             {
@@ -174,7 +126,7 @@ namespace Fhey.Framework.Uility.Network.Http
                 }
             }
             sb.Append("--" + boundary);
-            
+
             sb.Append("\r\n");
             sb.Append("Content-Disposition: form-data; name=\"" + fileFormFieldName + "\";filename=\"" + filePath + "\"");
             sb.Append("\r\n");
@@ -183,51 +135,37 @@ namespace Fhey.Framework.Uility.Network.Http
             sb.Append("\r\n\r\n");
             string postHeader = sb.ToString();
             byte[] postHeaderBytes = requestEncoding.GetBytes(postHeader);
-            
+
             byte[] boundaryBytes = requestEncoding.GetBytes("\r\n--" + boundary + "--\r\n");
 
             long length = postHeaderBytes.Length + fileStream.Length + boundaryBytes.Length;
             request.ContentLength = length;
             Stream requestStream = request.GetRequestStream();
-            
+
             requestStream.Write(postHeaderBytes, 0, postHeaderBytes.Length);
-            
+
             byte[] buffer = new byte[checked((uint)Math.Min(4096, (int)fileStream.Length))];
             int bytesRead = 0;
             while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
             {
                 requestStream.Write(buffer, 0, bytesRead);
             }
-            
-            requestStream.Write(boundaryBytes, 0, boundaryBytes.Length);
 
-            StringBuilder sbOutput = new StringBuilder();
-            sbOutput.AppendLine("");
-            for (int index = 0; index < url.Length + 4 - 1; index++)
-                sbOutput.Append("*");
-            sbOutput.AppendLine("*");
-            sbOutput.AppendLine("url:" + url);
-            sbOutput.AppendLine("Method:" + request.Method);
-            sbOutput.AppendLine("UserAgent:" + request.UserAgent);
-            sbOutput.AppendLine("ContentType:" + request.ContentType);
-            sbOutput.AppendLine("Accept:" + request.Accept);
-            for (int index = 0; index < url.Length + 4 - 1; index++)
-                sbOutput.Append("*");
-            sbOutput.AppendLine("*");
+            requestStream.Write(boundaryBytes, 0, boundaryBytes.Length);
             return request.GetResponse() as HttpWebResponse;
         }
 
 
-      
-        public virtual string Get(string url, int? timeout, string userAgent, string contentType, Encoding requestEncoding, CookieCollection cookies)
+
+        public virtual string Get(string url, object parameters, int? timeout, string userAgent, string contentType, Encoding requestEncoding, CookieCollection cookies)
         {
             string result = string.Empty;
-            HttpWebResponse httpWebResponse = CreateGetHttpResponse(url, timeout, userAgent,contentType, requestEncoding, cookies);
-            result=GetResponseStreamString(httpWebResponse, requestEncoding);
+            HttpWebResponse httpWebResponse = CreateGetHttpResponse(url, parameters, timeout, userAgent, contentType, requestEncoding, cookies);
+            result = GetResponseStreamString(httpWebResponse, requestEncoding);
             return result;
         }
 
-        string GetResponseStreamString(HttpWebResponse httpWebResponse,Encoding encoding)
+        string GetResponseStreamString(HttpWebResponse httpWebResponse, Encoding encoding)
         {
             string result = string.Empty;
             Stream responseStream = httpWebResponse.GetResponseStream();
@@ -240,8 +178,8 @@ namespace Fhey.Framework.Uility.Network.Http
             for (int index = 0; index < httpWebResponse.ResponseUri.AbsoluteUri.Length - 1; index++)
                 sbOutput.Append("*");
             sbOutput.AppendLine("*");
-           
-            sbOutput.AppendLine("url:"+ httpWebResponse.ResponseUri.ToString());
+
+            sbOutput.AppendLine("url:" + httpWebResponse.ResponseUri.ToString());
             sbOutput.AppendLine("result:" + result);
 
             for (int index = 0; index < httpWebResponse.ResponseUri.AbsoluteUri.Length - 1; index++)
@@ -251,39 +189,39 @@ namespace Fhey.Framework.Uility.Network.Http
         }
 
 
-        public virtual string Post(string url, string postData, int? timeout, string userAgent, string contentType, Encoding requestEncoding, CookieCollection cookies=null)
+        public virtual string Post(string url, object parameters, int? timeout, string userAgent, string contentType, Encoding requestEncoding, CookieCollection cookies = null)
         {
             string result = string.Empty;
-            HttpWebResponse httpWebResponse = CreatePostHttpResponse(url, postData, timeout, userAgent,contentType, requestEncoding, cookies);
+            HttpWebResponse httpWebResponse = CreatePostHttpResponse(url, parameters, timeout, userAgent, contentType, requestEncoding, cookies);
             result = GetResponseStreamString(httpWebResponse, requestEncoding);
             return result;
         }
 
-  
+
         public virtual string PostFile(string url, IDictionary<string, string> parameters, Stream fileStream, string fileFormFieldName, string fileContentType, string filePath, string referer, Encoding requestEncoding, CookieCollection cookies)
         {
             string result = string.Empty;
-            HttpWebResponse httpWebResponse = CreatePostFileHttpResponse(url, parameters,fileStream,fileFormFieldName,fileContentType,filePath,referer, requestEncoding, cookies);
+            HttpWebResponse httpWebResponse = CreatePostFileHttpResponse(url, parameters, fileStream, fileFormFieldName, fileContentType, filePath, referer, requestEncoding, cookies);
             result = GetResponseStreamString(httpWebResponse, requestEncoding);
             return result;
         }
 
-   
-        public virtual string Get(string url)
+
+        public virtual string Get(string url, object parameters)
         {
-            return Get(url,10000, "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)", "text/html;charset=UTF-8",Encoding.UTF8, null);
+            return Get(url, parameters, 10000, "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)", "application/json", Encoding.UTF8, null);
         }
 
 
-        public virtual string Post(string url, string postData, CookieCollection cookies)
+        public virtual string Post(string url, object parameters, CookieCollection cookies)
         {
-            return Post(url, postData, 10000, "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)", "text/html;charset=UTF-8", Encoding.UTF8, null);
+            return Post(url, parameters, 10000, "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)", "application/json", Encoding.UTF8, null);
         }
 
-      
-        public virtual T Get<T>(string url, int? timeout, string userAgent, string contentType, Encoding requestEncoding, CookieCollection cookies)
+
+        public virtual T Get<T>(string url, object parameters, int? timeout, string userAgent, string contentType, Encoding requestEncoding, CookieCollection cookies)
         {
-            string json = Get(url,timeout,userAgent,contentType,requestEncoding,cookies);
+            string json = Get(url, parameters, timeout, userAgent, contentType, requestEncoding, cookies);
             T jsonObject = JsonSerializer.Deserialize<T>(json);
 
             JsonObjectValidator(jsonObject);
@@ -291,10 +229,10 @@ namespace Fhey.Framework.Uility.Network.Http
             return jsonObject;
         }
 
-     
-        public virtual T Post<T>(string url, string postData, int? timeout, string userAgent, string contentType, Encoding requestEncoding, CookieCollection cookies)
+
+        public virtual T Post<T>(string url, object parameters, int? timeout, string userAgent, string contentType, Encoding requestEncoding, CookieCollection cookies)
         {
-            string json = Post(url, postData,timeout, userAgent, contentType, requestEncoding, cookies);
+            string json = Post(url, parameters, timeout, userAgent, contentType, requestEncoding, cookies);
             T jsonObject = JsonSerializer.Deserialize<T>(json);
 
             JsonObjectValidator(jsonObject);
@@ -305,7 +243,7 @@ namespace Fhey.Framework.Uility.Network.Http
 
         public virtual T PostFile<T>(string url, IDictionary<string, string> parameters, Stream fileStream, string fileFormFieldName, string fileContentType, string filePath, string referer, Encoding requestEncoding, CookieCollection cookies)
         {
-            string json = PostFile(url, parameters,fileStream,fileFormFieldName,fileContentType,filePath,referer, requestEncoding, cookies);
+            string json = PostFile(url, parameters, fileStream, fileFormFieldName, fileContentType, filePath, referer, requestEncoding, cookies);
             T jsonObject = JsonSerializer.Deserialize<T>(json);
 
             JsonObjectValidator(jsonObject);
@@ -313,9 +251,9 @@ namespace Fhey.Framework.Uility.Network.Http
             return jsonObject;
         }
 
-        public virtual T Get<T>(string url)
+        public virtual T Get<T>(string url, object parameters)
         {
-            string json = Get(url);
+            string json = Get(url, parameters);
             T jsonObject = JsonSerializer.Deserialize<T>(json);
 
             JsonObjectValidator(jsonObject);
@@ -323,9 +261,9 @@ namespace Fhey.Framework.Uility.Network.Http
             return jsonObject;
         }
 
-        public virtual T Post<T>(string url, string postData, CookieCollection cookies)
+        public virtual T Post<T>(string url, object parameters, CookieCollection cookies)
         {
-            string json = Post(url, postData, cookies);
+            string json = Post(url, parameters, cookies);
             T jsonObject = JsonSerializer.Deserialize<T>(json);
 
             JsonObjectValidator(jsonObject);
@@ -342,8 +280,37 @@ namespace Fhey.Framework.Uility.Network.Http
 
         protected virtual bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
         {
-            return true; 
+            return true;
         }
 
+        /// <summary>
+        /// 将所有参数以Get请求的方式组装
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public static string BuildGetParamters(Object t)
+        {
+            StringBuilder result = new StringBuilder();
+            Type type = t.GetType();
+            PropertyInfo[] propertys = type.GetProperties();
+            if (propertys != null && propertys.Length > 0)
+            {
+                foreach (PropertyInfo property in propertys)
+                {
+                    object value = property.GetValue(t, null);
+                    if (value != null)
+                    {
+                        result.Append(property + "=" + Convert.ToString(value));
+                        result.Append("&");
+                    }
+                }
+            }
+            if (result.Length > 0)
+            {
+                result.Insert(0, "?");
+                result.Remove(result.Length - 1, 1);
+            }
+            return result.ToString();
+        }
     }
 }
