@@ -24,7 +24,7 @@
         public static string IsMoney = @"(^[1-9]([0-9]+)?(\.[0-9]+)?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)";
 
         //是否手机号
-        public static string IsPhone = @"^1(3|4|5|7|8)\d{9}$";
+        public static string IsPhone = @"0?1[0-9]{10}";
 
         //是否固定电话(国内)
         public static string IsTel = @"0\d{2,3}-\d{7,8}|\d{7,8}";
